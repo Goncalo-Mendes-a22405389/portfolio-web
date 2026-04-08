@@ -86,13 +86,18 @@ class TFC(models.Model):
     titulo = models.CharField(max_length=200)
     autor = models.CharField(max_length=100)
     orientador = models.CharField(max_length=100)
-    ano = models.IntegerField()
+    licenciatura = models.CharField(max_length=100)
+    pdf = models.URLField(blank=True)
+    image = models.URLField(blank=True)
     descricao = models.TextField()
     area = models.CharField(max_length=100)
+    palavras_chaves = models.CharField(max_length=100)
+    tecnologias = models.CharField(max_length=100)
     classificacao = models.FloatField()
 
+
     def __str__(self):
-        return self.titulo
+        return f"{self.titulo} do aluno {self.autor} com o orientador {self.orientador}"
 
 class MakingOf(models.Model):
     titulo = models.CharField(max_length=200)

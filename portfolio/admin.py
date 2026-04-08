@@ -60,8 +60,8 @@ class FormacaoAdmin(admin.ModelAdmin):
 admin.site.register(Formacao, FormacaoAdmin)
 
 class TFCAdmin(admin.ModelAdmin):
-    list_display = ("titulo", "autor", "orientador", "ano", "classificacao")
-    ordering = ("ano", "titulo")
+    list_display = ("titulo", "autor", "orientador", "classificacao")
+    ordering = ("titulo", "autor","orientador")
     search_fields = ("titulo", "autor", "orientador")
 
 admin.site.register(TFC, TFCAdmin)
