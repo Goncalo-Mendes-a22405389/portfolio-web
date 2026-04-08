@@ -85,6 +85,7 @@ class Formacao(models.Model):
 class TFC(models.Model):
     titulo = models.CharField(max_length=200)
     autor = models.CharField(max_length=100)
+    email = models.EmailField()
     orientador = models.CharField(max_length=100)
     licenciatura = models.CharField(max_length=100)
     pdf = models.URLField(blank=True)
@@ -94,7 +95,6 @@ class TFC(models.Model):
     palavras_chaves = models.CharField(max_length=100)
     tecnologias = models.CharField(max_length=100)
     classificacao = models.FloatField()
-
 
     def __str__(self):
         return f"{self.titulo} do aluno {self.autor} com o orientador {self.orientador}"
