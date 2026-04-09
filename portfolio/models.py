@@ -97,12 +97,12 @@ class TFC(models.Model):
     classificacao = models.FloatField()
 
     def __str__(self):
-        return f"{self.titulo} do aluno {self.autor} com o orientador {self.orientador}"
+        return f"{self.titulo}"
 
 class MakingOf(models.Model):
     titulo = models.CharField(max_length=200)
     descricao = models.TextField()
-    image = models.ImageField(upload_to="registos/")
+    ficheiro = models.FileField(upload_to="registos/")
 
     def __str__(self):
         return self.titulo
