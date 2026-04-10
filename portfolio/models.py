@@ -35,7 +35,7 @@ class UnidadeCurricular(models.Model):
     codigo = models.CharField(max_length=20)
     semestre = models.IntegerField()
     descricao = models.TextField()
-    docentes = models.ManyToManyField(Docente, related_name='ucs')
+    docentes = models.ManyToManyField(Docente, related_name='ucs', blank = True)
     image = models.ImageField(upload_to="uc/", blank = True)
 
     def __str__(self):
