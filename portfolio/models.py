@@ -24,7 +24,11 @@ class Ano(models.Model):
 class Docente(models.Model):
     nome = models.CharField(max_length=200)
     email = models.EmailField()
+    cardCode = models.IntegerField()
+    regimen = models.CharField(max_length=100)
+    degree = models.CharField(max_length=100)
     pagina_lusofona = models.URLField(blank=True)
+
 
     def __str__(self):
         return self.nome

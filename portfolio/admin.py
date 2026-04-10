@@ -18,7 +18,7 @@ class AnoAdmin(admin.ModelAdmin):
 admin.site.register(Ano, AnoAdmin)
 
 class DocenteAdmin(admin.ModelAdmin):
-    list_display = ("nome", "email")
+    list_display = ("nome", "email", "degree")
     ordering = ("nome",)
     search_fields = ("nome", "email")
 
