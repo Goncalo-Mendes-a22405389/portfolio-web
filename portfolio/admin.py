@@ -25,7 +25,7 @@ class DocenteAdmin(admin.ModelAdmin):
 admin.site.register(Docente, DocenteAdmin)
 
 class UnidadeCurricularAdmin(admin.ModelAdmin):
-    list_display = ("nome", "codigo", "ano", "semestre")
+    list_display = ("nome", "codigo", "ano", "semestre", "ects")
     ordering = ("ano", "semestre", "nome")
     search_fields = ("nome", "codigo")
 

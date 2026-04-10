@@ -37,9 +37,10 @@ class UnidadeCurricular(models.Model):
     ano = models.ForeignKey(Ano, on_delete=models.CASCADE, related_name='ucs')
     nome = models.CharField(max_length=200)
     codigo = models.CharField(max_length=20)
-    semestre = models.IntegerField()
+    semestre = models.CharField(max_length=100)
     descricao = models.TextField()
     docentes = models.ManyToManyField(Docente, related_name='ucs', blank = True)
+    ects = models.IntegerField()
     image = models.ImageField(upload_to="uc/", blank = True)
 
     def __str__(self):
