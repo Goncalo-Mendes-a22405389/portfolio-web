@@ -108,7 +108,7 @@ class TFC(models.Model):
 class MakingOf(models.Model):
     titulo = models.CharField(max_length=200)
     descricao = models.TextField()
-    ficheiro = models.FileField(upload_to="registos/")
+    ficheiro = models.FileField(upload_to="registos/", blank = True)
 
     def __str__(self):
         return self.titulo
