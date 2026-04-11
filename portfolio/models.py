@@ -83,6 +83,7 @@ class Formacao(models.Model):
     descricao = models.TextField()
     certificado_url = models.URLField()
     competencias = models.ManyToManyField(Competencia, related_name='formacoes')
+    tecnologia = models.ForeignKey(Tecnologia,related_name="formacoes",on_delete=models.CASCADE)
 
     def __str__(self):
         return self.nome
