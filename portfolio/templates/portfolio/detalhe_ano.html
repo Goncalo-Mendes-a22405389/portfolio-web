@@ -1,0 +1,39 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>{{ ano.licenciatura.nome }}</h2>
+<h3>{{ ano.ano }}º Ano</h3>
+
+<section>
+
+    {% for uc in ucs %}
+    <article>
+
+        <!-- HEADER DA UC -->
+        <header>
+            <h3>{{ uc.nome }}</h3>
+
+            {% if uc.image %}
+                <img src="{{ uc.image.url }}" alt="{{ uc.nome }}">
+            {% endif %}
+        </header>
+
+        <!-- INFO DA UC -->
+        <section>
+            <p><strong>Código:</strong> {{ uc.codigo }}</p>
+            <p><strong>Semestre:</strong> {{ uc.semestre }}</p>
+            <p><strong>ECTS:</strong> {{ uc.ects }}</p>
+
+            <p>{{ uc.descricao }}</p>
+        </section>
+
+    </article>
+
+    {% empty %}
+        <p>Não existem UCs neste ano.</p>
+    {% endfor %}
+
+</section>
+
+{% endblock %}

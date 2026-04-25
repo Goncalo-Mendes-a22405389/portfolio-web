@@ -19,7 +19,7 @@
         <ul>
             {% for ano in anos %}
                 <li>
-                    <a href="">
+                    <a href="{% url 'detalhe_ano' ano.id %}">
                         {{ ano.ano }}º Ano
                     </a>
                 </li>

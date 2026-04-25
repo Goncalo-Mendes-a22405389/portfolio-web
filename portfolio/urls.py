@@ -8,5 +8,6 @@ urlpatterns = [
     path("tfcs/",views.tfc_view,name = "tfcs"),
     path("licenciaturas/", views.licenciatura_view, name = "licenciaturas"),
     path("licenciaturas/<int:id>/", views.detalhe_licenciatura, name="detalhe_licenciatura"),
+    path("anos/<int:id>/", views.detalhe_ano, name="detalhe_ano"),
     
 ]

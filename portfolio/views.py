@@ -21,3 +21,9 @@ def detalhe_licenciatura(request, id):
     anos = licenciatura.anos.all()
 
     return render(request, "portfolio/detalhe_licenciatura.html", {"licenciatura": licenciatura,"anos": anos})
+
+def detalhe_ano(request, id):
+    ano = Ano.objects.get(id=id)
+    ucs = ano.ucs.all()
+
+    return render(request, "portfolio/detalhe_ano.html", {"ano": ano,"ucs": ucs})
