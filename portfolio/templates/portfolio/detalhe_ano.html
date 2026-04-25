@@ -10,7 +10,6 @@
     {% for uc in ucs %}
     <article>
 
-        <!-- HEADER DA UC -->
         <header>
             <h3>{{ uc.nome }}</h3>
 
@@ -19,13 +18,28 @@
             {% endif %}
         </header>
 
-        <!-- INFO DA UC -->
         <section>
             <p><strong>Código:</strong> {{ uc.codigo }}</p>
             <p><strong>Semestre:</strong> {{ uc.semestre }}</p>
             <p><strong>ECTS:</strong> {{ uc.ects }}</p>
-
             <p>{{ uc.descricao }}</p>
+        </section>
+
+        <!-- DOCENTES -->
+        <section>
+            <h4>Docentes</h4>
+
+            <ul>
+                {% for docente in uc.docentes.all %}
+                    <li>
+                        <a href="{% url 'detalhe_docente' docente.id %}">
+                            {{ docente.nome }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li>Sem docentes atribuídos</li>
+                {% endfor %}
+            </ul>
         </section>
 
     </article>

@@ -1,0 +1,29 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>{{ docente.nome }}</h2>
+
+<p><strong>Email:</strong> {{ docente.email }}</p>
+<p><strong>Regime:</strong> {{ docente.regimen }}</p>
+<p><strong>Grau:</strong> {{ docente.degree }}</p>
+
+{% if docente.pagina_lusofona %}
+    <p>
+        <a href="{{ docente.pagina_lusofona }}" target="_blank">
+            Página Lusófona
+        </a>
+    </p>
+{% endif %}
+
+<h3>UCs que leciona</h3>
+
+<ul>
+    {% for uc in docente.ucs.all %}
+        <li>{{ uc.nome }}</li>
+    {% empty %}
+        <li>Não leciona UCs</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

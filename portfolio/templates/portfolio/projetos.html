@@ -1,0 +1,47 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>Projetos</h2>
+
+<section>
+
+    {% for projeto in projetos %}
+    <article>
+
+        <header>
+            <h3>{{ projeto.titulo }}</h3>
+        </header>
+
+        <section>
+            <p><strong>UC:</strong> {{ projeto.uc.nome }}</p>
+
+            <p><Strong>Descrição:</Strong> {{ projeto.descricao }}</p>
+
+            <p><strong>Conceitos aplicados:</strong> {{ projeto.conceitos_aplicados }}</p>
+
+            {% if projeto.github_url %}
+                <p>
+                    <a href="{{ projeto.github_url }}" target="_blank">
+                        GitHub
+                    </a>
+                </p>
+            {% endif %}
+
+            {% if projeto.image %}
+                <img src="{{ projeto.image.url }}" alt="{{ projeto.titulo }}">
+            {% endif %}
+
+        </section>
+
+    </article>
+
+    <hr>
+
+    {% empty %}
+        <p>Não existem projetos.</p>
+    {% endfor %}
+
+</section>
+
+{% endblock %}

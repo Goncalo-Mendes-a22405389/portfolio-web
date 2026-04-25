@@ -27,3 +27,21 @@ def detalhe_ano(request, id):
     ucs = ano.ucs.all()
 
     return render(request, "portfolio/detalhe_ano.html", {"ano": ano,"ucs": ucs})
+
+from django.shortcuts import get_object_or_404, render
+from .models import Docente
+
+def detalhe_docente(request, id):
+    docente = Docente.objects.get(id=id)
+
+    return render(request, "portfolio/detalhe_docente.html", { "docente": docente })
+
+def projetos_view(request):
+    projetos = Projeto.objects.all()
+
+    return render(request, "portfolio/projetos.html", {"projetos": projetos})
+
+def tecnologias_view(request):
+    tecnologias = Tecnologia.objects.all()
+
+    return render(request, "portfolio/tecnologias.html", {"tecnologias": tecnologias })

@@ -1,0 +1,44 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>Tecnologias</h2>
+
+<section>
+
+    {% for tecnologia in tecnologias %}
+    <article>
+
+        <header>
+            <h3>{{ tecnologia.nome }}</h3>
+        </header>
+
+        <section>
+
+            <p>{{ tecnologia.descricao }}</p>
+
+            {% if tecnologia.website %}
+                <p>
+                    <a href="{{ tecnologia.website }}" target="_blank">
+                        Website
+                    </a>
+                </p>
+            {% endif %}
+
+            {% if tecnologia.image %}
+                <img src="{{ tecnologia.image.url }}" alt="{{ tecnologia.nome }}">
+            {% endif %}
+
+        </section>
+
+    </article>
+
+    <hr>
+
+    {% empty %}
+        <p>Não existem tecnologias.</p>
+    {% endfor %}
+
+</section>
+
+{% endblock %}
