@@ -1,0 +1,39 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>Making Of</h2>
+
+<section>
+
+    {% for mo in makingof %}
+    <article>
+
+        <header>
+            <h3>{{ mo.titulo }}</h3>
+        </header>
+
+        <section>
+
+            <p>{{ mo.descricao }}</p>
+
+            {% if mo.ficheiro %}
+                <p>
+                    <a href="{{ mo.ficheiro.url }}" target="_blank">
+                        Abrir ficheiro
+                    </a>
+                </p>
+            {% endif %}
+
+        </section>
+
+    </article>
+
+
+    {% empty %}
+        <p>Não existem registos de Making Of.</p>
+    {% endfor %}
+
+</section>
+
+{% endblock %}

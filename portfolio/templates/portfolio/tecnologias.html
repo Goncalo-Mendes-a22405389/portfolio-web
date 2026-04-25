@@ -15,7 +15,7 @@
 
         <section>
 
-            <p>{{ tecnologia.descricao }}</p>
+            <p><strong>Descrição: </strong>{{ tecnologia.descricao }}</p>
 
             {% if tecnologia.website %}
                 <p>
@@ -32,8 +32,6 @@
         </section>
 
     </article>
-
-    <hr>
 
     {% empty %}
         <p>Não existem tecnologias.</p>

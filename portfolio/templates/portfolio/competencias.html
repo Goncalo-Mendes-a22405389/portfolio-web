@@ -1,0 +1,43 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>Competências</h2>
+
+<section>
+
+    {% for competencia in competencias %}
+    <article>
+
+        <header>
+            <h3>{{ competencia.nome }}</h3>
+        </header>
+
+        <section>
+
+            <p><strong>Tipo:</strong> {{ competencia.tipo }}</p>
+
+            <p>{{ competencia.descricao }}</p>
+
+            <h4>Tecnologias associadas</h4>
+
+            <ul>
+                {% for tecnologia in competencia.tecnologias.all %}
+                    <li>{{ tecnologia.nome }}</li>
+                {% empty %}
+                    <li>Sem tecnologias associadas</li>
+                {% endfor %}
+            </ul>
+
+        </section>
+
+    </article>
+
+
+    {% empty %}
+        <p>Não existem competências.</p>
+    {% endfor %}
+
+</section>
+
+{% endblock %}

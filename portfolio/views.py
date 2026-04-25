@@ -45,3 +45,13 @@ def tecnologias_view(request):
     tecnologias = Tecnologia.objects.all()
 
     return render(request, "portfolio/tecnologias.html", {"tecnologias": tecnologias })
+
+def competencias_view(request):
+    competencias = Competencia.objects.all()
+
+    return render(request, "portfolio/competencias.html", {"competencias": competencias})
+
+def makingof_view(request):
+    makingof = MakingOf.objects.all()
+    
+    return render(request, "portfolio/makingof.html", {'makingof':makingof})
