@@ -1,0 +1,42 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center;">TFC's</h2>
+
+<section class="tfc-container">
+
+    {% for tfc in tfcs %}
+    <article class="tfc-card">
+
+        <img src="{{ tfc.image }}" alt="Imagem de {{ tfc.titulo }}"style="width:100%; height:220px; object-fit:cover;">
+
+        <div class="tfc-body">
+            <h3>{{ tfc.titulo }}</h3>
+
+            <p><strong>Aluno:</strong> {{ tfc.autor }}</p>
+            <p><strong>Email:</strong> {{ tfc.email }}</p>
+            <p><strong>Orientador:</strong> {{ tfc.orientador }}</p>
+            <p><strong>Licenciatura:</strong> {{ tfc.licenciatura }}</p>
+            <p><strong>Área:</strong> {{ tfc.area }}</p>
+
+            <p><strong>Classificação:</strong> {{ tfc.classificacao }}</p>
+
+            <p><strong>Tecnologias:</strong> {{ tfc.tecnologias }}</p>
+            <p><strong>Palavras-chave:</strong> {{ tfc.palavras_chaves }}</p>
+
+            <p class="descricao">{{ tfc.descricao }}</p>
+
+            {% if tfc.pdf != 'None' %}
+                <a class="btn" href="{{ tfc.pdf }}" target="_blank">Ver PDF</a>
+            {% endif %}
+        </div>
+
+    </article>
+    {% empty %}
+        <p>Não existem TFCs disponíveis.</p>
+    {% endfor %}
+
+</section>
+
+{% endblock %}

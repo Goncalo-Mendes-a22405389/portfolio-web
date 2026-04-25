@@ -1,0 +1,39 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2 style="text-align:center;">Licenciaturas</h2>
+
+<section>
+
+    {% for lic in licenciaturas %}
+    <article>
+
+        <header>
+            <h3>{{ lic.nome }} ({{ lic.sigla }})</h3>
+        </header>
+
+        <section>
+            <p><strong>Universidade:</strong> {{ lic.universidade }}</p>
+            <p><strong>Duração:</strong> {{ lic.duracao_anos }} anos</p>
+
+            <p style="margin-top:10px; color:#555;">
+                {{ lic.descricao }}
+            </p>
+
+            <p>
+                <a href="{% url 'detalhe_licenciatura' lic.id %}">
+                    Ver detalhes
+                </a>
+            </p>
+
+        </section>
+
+    </article>
+    {% empty %}
+        <p>Não existem licenciaturas disponíveis.</p>
+    {% endfor %}
+
+</section>
+
+{% endblock %}

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "portfolio",
+    "escola",
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,7 @@ import os
 
 # Pasta no servidor onde os ficheiros vão ser guardados
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # URL pública para aceder aos ficheiros
 MEDIA_URL = '/media/'
