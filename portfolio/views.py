@@ -28,9 +28,6 @@ def detalhe_ano(request, id):
 
     return render(request, "portfolio/detalhe_ano.html", {"ano": ano,"ucs": ucs})
 
-from django.shortcuts import get_object_or_404, render
-from .models import Docente
-
 def detalhe_docente(request, id):
     docente = Docente.objects.get(id=id)
 
