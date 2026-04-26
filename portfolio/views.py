@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from .forms import *
 # Create your views here.
 
 
@@ -52,3 +53,11 @@ def makingof_view(request):
     makingof = MakingOf.objects.all()
     
     return render(request, "portfolio/makingof.html", {'makingof':makingof})
+
+def novo_projeto_view(request):
+
+    form = ProjetoForm()      # form é uma instancia de AutorForm,
+                            # formulário em branco com os campos de Autor
+
+    context = {'form': form}
+    return render(request, 'portfolio/novo_projeto.html', context)
