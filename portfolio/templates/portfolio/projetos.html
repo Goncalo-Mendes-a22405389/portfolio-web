@@ -33,6 +33,10 @@
             {% endif %}
 
         </section>
+            <a href="{% url 'edita_projeto' projeto.id %}"><button>Editar informação do Projeto</button></a>
+            <a href="{% url 'apaga_projeto' projeto.id %}"><button>Apagar o Projeto</button></a>
+            
+
 
     </article>
 
