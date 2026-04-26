@@ -29,7 +29,7 @@
             {% endif %}
 
             {% if projeto.image %}
-                <img src="{{ projeto.image.url }}" alt="{{ projeto.titulo }}">
+                <img src="{{ projeto.image.url }}" alt="{{ projeto.titulo }}" style="width: 200px; height: auto;">
             {% endif %}
 
         </section>
@@ -40,7 +40,6 @@
 
     </article>
 
-    <a href="{% url 'novo_projeto' %}"><button>Inserir novo Projeto</button></a>
 
 
     {% empty %}
@@ -48,5 +47,7 @@
     {% endfor %}
 
 </section>
+
+<a href="{% url 'novo_projeto' %}"><button>Inserir novo Projeto</button></a>
 
 {% endblock %}
