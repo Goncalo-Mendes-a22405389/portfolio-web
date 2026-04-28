@@ -135,7 +135,6 @@ def nova_competencia_view(request):
     context = {'form': form}
     return render(request, 'portfolio/nova_competencia.html', context)
 
-
 def edita_competencia_view(request, competencia_id):
     competencia = Competencia.objects.get(id=competencia_id)
     
@@ -154,3 +153,35 @@ def apaga_competencia_view(request, competencia_id):
     competencia = Competencia.objects.get(id=competencia_id)
     competencia.delete()
     return redirect('competencias')
+
+
+def nova_formacao_view(request):
+    # criar instância de formulário.
+    # Se foram submetidos dados, estes estão em request.POST e o formulario com dados é válido. 
+    # Senão, o form não tem dados e não é válido
+    form = FormacaoForm(request.POST or None, request.FILES)  # request.FILES deve ser incluido se forem enviados ficheiros ou imagens
+    if form.is_valid():
+        form.save()
+        return redirect('formacoes')
+    
+    context = {'form': form}
+    return render(request, 'portfolio/nova_formacao.html', context)
+
+def edita_formacao_view(request, formacao_id):
+    formacao = Formacao.objects.get(id=formacao_id)
+    
+    if request.POST:
+        form = FormacaoForm(request.POST or None, request.FILES, instance=formacao)
+        if form.is_valid():
+            form.save()
+            return redirect('formacoes')
+    else:
+        form = FormacaoForm(instance=formacao)  # cria formulário com dados da instância autor
+        
+    context = {'form': form, 'formacao':formacao}
+    return render(request, 'portfolio/edita_formacao.html', context)
+
+def apaga_formacao_view(request, formacao_id):
+    formacao = Formacao.objects.get(id=formacao_id)
+    formacao.delete()
+    return redirect('formacoes')
