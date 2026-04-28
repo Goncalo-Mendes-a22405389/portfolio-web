@@ -121,3 +121,36 @@ def apaga_tecnologia_view(request, tecnologia_id):
     tecnologia = Tecnologia.objects.get(id=tecnologia_id)
     tecnologia.delete()
     return redirect('tecnologias')
+
+
+def nova_competencia_view(request):
+    # criar instância de formulário.
+    # Se foram submetidos dados, estes estão em request.POST e o formulario com dados é válido. 
+    # Senão, o form não tem dados e não é válido
+    form = CompetenciaForm(request.POST or None, request.FILES)  # request.FILES deve ser incluido se forem enviados ficheiros ou imagens
+    if form.is_valid():
+        form.save()
+        return redirect('competencias')
+    
+    context = {'form': form}
+    return render(request, 'portfolio/nova_competencia.html', context)
+
+
+def edita_competencia_view(request, competencia_id):
+    competencia = Competencia.objects.get(id=competencia_id)
+    
+    if request.POST:
+        form = CompetenciaForm(request.POST or None, request.FILES, instance=competencia)
+        if form.is_valid():
+            form.save()
+            return redirect('competencias')
+    else:
+        form = CompetenciaForm(instance=competencia)  # cria formulário com dados da instância autor
+        
+    context = {'form': form, 'competencia':competencia}
+    return render(request, 'portfolio/edita_competencia.html', context)
+
+def apaga_competencia_view(request, competencia_id):
+    competencia = Competencia.objects.get(id=competencia_id)
+    competencia.delete()
+    return redirect('competencias')

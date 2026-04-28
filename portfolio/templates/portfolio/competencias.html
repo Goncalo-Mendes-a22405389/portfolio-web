@@ -30,6 +30,8 @@
             </ul>
 
         </section>
+        <a href="{% url 'edita_competencia' competencia.id %}"><button>Editar informação da Competencia</button></a>
+        <a href="{% url 'apaga_competencia' competencia.id %}"><button>Apagar o Projeto</button></a>
 
     </article>
 
@@ -39,5 +41,6 @@
     {% endfor %}
 
 </section>
+<a href="{% url 'nova_competencia' %}"><button>Inserir nova Competência</button></a>
 
 {% endblock %}
