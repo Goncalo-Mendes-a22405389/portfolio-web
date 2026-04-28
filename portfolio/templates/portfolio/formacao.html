@@ -1,0 +1,49 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h2>Formações</h2>
+
+<section>
+
+    {% for formacao in formacoes %}
+    <article>
+
+        <header>
+            <h3>{{ formacao.nome }}</h3>
+            <p><strong>Entidade:</strong> {{ formacao.entidade }}</p>
+            <p><strong>Tecnologia:</strong> {{ formacao.tecnologia }}</p>
+        </header>
+
+        <section>
+
+            <p>{{ formacao.descricao }}</p>
+
+            {% if formacao.certificado_url %}
+                <p>
+                    <a href="{{ formacao.certificado_url }}" target="_blank">
+                        Ver certificado
+                    </a>
+                </p>
+            {% endif %}
+
+            <p><strong>Competências:</strong></p>
+            <ul>
+                {% for comp in formacao.competencias.all %}
+                    <li>{{ comp.nome }}</li>
+                {% empty %}
+                    <li>Sem competências associadas.</li>
+                {% endfor %}
+            </ul>
+
+        </section>
+
+    </article>
+
+    {% empty %}
+        <p>Não existem formações registadas.</p>
+    {% endfor %}
+
+</section>
+
+{% endblock %}

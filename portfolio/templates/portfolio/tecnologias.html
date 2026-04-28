@@ -30,6 +30,8 @@
             {% endif %}
 
         </section>
+         <a href="{% url 'edita_tecnologia' tecnologia.id %}"><button>Editar informação da Tencnologia</button></a>
+         <a href="{% url 'apaga_tecnologia' tecnologia.id %}"><button>Apagar a Tecnologia</button></a>
 
     </article>
 
@@ -38,5 +40,7 @@
     {% endfor %}
 
 </section>
+
+<a href="{% url 'nova_tecnologia' %}"><button>Inserir nova Tecnologia</button></a>
 
 {% endblock %}

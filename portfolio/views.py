@@ -54,6 +54,11 @@ def makingof_view(request):
     
     return render(request, "portfolio/makingof.html", {'makingof':makingof})
 
+def formacao_view(request):
+    formacoes = Formacao.objects.all()
+
+    return render(request, "portfolio/formacao.html", {'formacoes': formacoes})
+
 def novo_projeto_view(request):
     # criar instância de formulário.
     # Se foram submetidos dados, estes estão em request.POST e o formulario com dados é válido. 
@@ -84,3 +89,35 @@ def apaga_projeto_view(request, projeto_id):
     projeto = Projeto.objects.get(id=projeto_id)
     projeto.delete()
     return redirect('projetos')
+
+
+def nova_tecnologia_view(request):
+    # criar instância de formulário.
+    # Se foram submetidos dados, estes estão em request.POST e o formulario com dados é válido. 
+    # Senão, o form não tem dados e não é válido
+    form = TecnologiaForm(request.POST or None, request.FILES)  # request.FILES deve ser incluido se forem enviados ficheiros ou imagens
+    if form.is_valid():
+        form.save()
+        return redirect('tecnologias')
+    
+    context = {'form': form}
+    return render(request, 'portfolio/nova_tecnologia.html', context)
+
+def edita_tecnologia_view(request, tecnologia_id):
+    tecnologia = Tecnologia.objects.get(id=tecnologia_id)
+    
+    if request.POST:
+        form = TecnologiaForm(request.POST or None, request.FILES, instance=tecnologia)
+        if form.is_valid():
+            form.save()
+            return redirect('tecnologias')
+    else:
+        form = TecnologiaForm(instance=tecnologia)  # cria formulário com dados da instância autor
+        
+    context = {'form': form, 'tecnologia':tecnologia}
+    return render(request, 'portfolio/edita_tecnologia.html', context)
+
+def apaga_tecnologia_view(request, tecnologia_id):
+    tecnologia = Tecnologia.objects.get(id=tecnologia_id)
+    tecnologia.delete()
+    return redirect('tecnologias')
