@@ -1,0 +1,10 @@
+{% extends "portfolio/base.html" %}
+{% load markdownify %}
+
+{% block content %}
+
+<div>
+    {{ conteudo|markdownify }}
+</div>
+
+{% endblock %}

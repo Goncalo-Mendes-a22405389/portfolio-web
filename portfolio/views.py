@@ -185,3 +185,39 @@ def apaga_formacao_view(request, formacao_id):
     formacao = Formacao.objects.get(id=formacao_id)
     formacao.delete()
     return redirect('formacoes')
+
+
+def landing_view(request):
+
+    conteudo = """
+# Sobre esta Aplicação
+
+## Arquitetura
+A aplicação utiliza o padrão **MVT do Django**:
+- Model → dados
+- View → lógica
+- Template → interface
+
+## Modelação
+Inclui entidades como:
+- Licenciatura
+- Unidade Curricular
+- Projeto
+- Tecnologia
+
+Com relações:
+- ForeignKey
+- ManyToMany
+
+## Tecnologias
+- Django
+- HTML
+- GitHub
+
+## Objetivo
+Apresentar o percurso académico e projetos de forma dinâmica.
+"""
+
+    return render(request, "portfolio/landingpage.html", {
+        "conteudo": conteudo
+    })
