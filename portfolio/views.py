@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
+import os
+from django.conf import *
 # Create your views here.
 
 
@@ -218,6 +220,12 @@ Com relações:
 Apresentar o percurso académico e projetos de forma dinâmica.
 """
 
+    path = os.path.join(settings.BASE_DIR, "portfolio/static/portfolio/md/makingof.md")
+
+    with open(path, "r", encoding="utf-8") as f:
+        makingof = f.read()
+
     return render(request, "portfolio/landingpage.html", {
-        "conteudo": conteudo
+        "conteudo": conteudo,
+        "makingof": makingof
     })
