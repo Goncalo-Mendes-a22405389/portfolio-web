@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("",views.landing_view),
+    path("",views.landing_view, name = "landingpage"),
     path("tfcs/",views.tfc_view,name = "tfcs"),
     path("licenciaturas/", views.licenciatura_view, name = "licenciaturas"),
     path("licenciaturas/<int:id>/", views.detalhe_licenciatura, name="detalhe_licenciatura"),
