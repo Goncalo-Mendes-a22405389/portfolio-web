@@ -32,7 +32,7 @@
             {% endif %}
 
         </section>
-            {% if request.user.is_authenticated and request.user.groups.all.0.name == 'gestor-portfolio' %}
+            {% if request.user.is_authenticated and gestor %}
             <a href="{% url 'edita_projeto' projeto.id %}"><button>Editar informação do Projeto</button></a>
             <a href="{% url 'apaga_projeto' projeto.id %}"><button>Apagar o Projeto</button></a>
             {% endif %}
@@ -48,7 +48,7 @@
     {% endfor %}
 
 </section>
-{% if request.user.is_authenticated and request.user.groups.all.0.name == 'gestor-portfolio' %}
+{% if request.user.is_authenticated and gestor %}
 <a href="{% url 'novo_projeto' %}"><button>Inserir novo Projeto</button></a>
 {% endif %}
 

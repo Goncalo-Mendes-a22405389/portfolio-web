@@ -38,7 +38,7 @@
 
         </section>
 
-        {% if request.user.is_authenticated and request.user.groups.all.0.name == 'gestor-portfolio' %}
+        {% if request.user.is_authenticated and gestor %}
         <a href="{% url 'edita_formacao' formacao.id %}"><button>Editar informação da Formação</button></a>
         <a href="{% url 'apaga_formacao' formacao.id %}"><button>Apagar a Formação</button></a>
         {% endif %}
@@ -50,7 +50,7 @@
     {% endfor %}
 
 </section>
-{% if request.user.is_authenticated and request.user.groups.all.0.name == 'gestor-portfolio' %}
+{% if request.user.is_authenticated and gestor %}
 <a href="{% url 'nova_formacao' %}"><button>Inserir nova Formção</button></a>
 {% endif %}
 

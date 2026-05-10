@@ -44,17 +44,17 @@ def detalhe_docente(request, id):
 def projetos_view(request):
     projetos = Projeto.objects.all()
 
-    return render(request, "portfolio/projetos.html", {"projetos": projetos})
+    return render(request, "portfolio/projetos.html", {"projetos": projetos, 'gestor': is_gestor(request.user)})
 
 def tecnologias_view(request):
     tecnologias = Tecnologia.objects.all()
 
-    return render(request, "portfolio/tecnologias.html", {"tecnologias": tecnologias })
+    return render(request, "portfolio/tecnologias.html", {"tecnologias": tecnologias , 'gestor': is_gestor(request.user)})
 
 def competencias_view(request):
     competencias = Competencia.objects.all()
 
-    return render(request, "portfolio/competencias.html", {"competencias": competencias})
+    return render(request, "portfolio/competencias.html", {"competencias": competencias, 'gestor': is_gestor(request.user)})
 
 def makingof_view(request):
     makingof = MakingOf.objects.all()
@@ -64,7 +64,7 @@ def makingof_view(request):
 def formacao_view(request):
     formacoes = Formacao.objects.all()
 
-    return render(request, "portfolio/formacao.html", {'formacoes': formacoes})
+    return render(request, "portfolio/formacao.html", {'formacoes': formacoes, 'gestor': is_gestor(request.user)})
 
 @login_required
 def novo_projeto_view(request):

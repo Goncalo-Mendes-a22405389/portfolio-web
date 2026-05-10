@@ -30,7 +30,7 @@
             </ul>
 
         </section>
-        {% if request.user.is_authenticated and request.user.groups.all.0.name == 'gestor-portfolio' %}
+        {% if request.user.is_authenticated and gestor %}
         <a href="{% url 'edita_competencia' competencia.id %}"><button>Editar informação da Competencia</button></a>
         <a href="{% url 'apaga_competencia' competencia.id %}"><button>Apagar o Projeto</button></a>~
         {% endif %}
@@ -44,7 +44,7 @@
     {% endfor %}
 
 </section>
-{% if request.user.is_authenticated and request.user.groups.all.0.name == 'gestor-portfolio' %}
+{% if request.user.is_authenticated and gestor %}
 <a href="{% url 'nova_competencia' %}"><button>Inserir nova Competência</button></a>
 {% endif %}
 
