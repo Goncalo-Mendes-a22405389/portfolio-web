@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "portfolio",
     "escola",
     "markdownify.apps.MarkdownifyConfig",
+    "accounts",
+    
 ]
 MARKDOWNIFY = {
    "default": {

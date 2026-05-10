@@ -30,8 +30,10 @@
             {% endif %}
 
         </section>
+        {% if request.user.is_authenticated and request.user.groups.all.0.name == 'gestor-portfolio' %}
          <a href="{% url 'edita_tecnologia' tecnologia.id %}"><button>Editar informação da Tencnologia</button></a>
          <a href="{% url 'apaga_tecnologia' tecnologia.id %}"><button>Apagar a Tecnologia</button></a>
+        {% endif %}
 
     </article>
 
@@ -40,7 +42,8 @@
     {% endfor %}
 
 </section>
-
+{% if request.user.is_authenticated and request.user.groups.all.0.name == 'gestor-portfolio' %}
 <a href="{% url 'nova_tecnologia' %}"><button>Inserir nova Tecnologia</button></a>
+{% endif %}
 
 {% endblock %}

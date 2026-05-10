@@ -2,8 +2,13 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 import os
-from django.conf import *
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+
+def is_gestor(user):
+    return user.groups.filter(name='gestor-portfolio').exists()
 
 
 def index_view(request):
@@ -61,6 +66,7 @@ def formacao_view(request):
 
     return render(request, "portfolio/formacao.html", {'formacoes': formacoes})
 
+@login_required
 def novo_projeto_view(request):
     # criar instância de formulário.
     # Se foram submetidos dados, estes estão em request.POST e o formulario com dados é válido. 
@@ -73,6 +79,7 @@ def novo_projeto_view(request):
     context = {'form': form}
     return render(request, 'portfolio/novo_projeto.html', context)
 
+@login_required
 def edita_projeto_view(request, projeto_id):
     projeto = Projeto.objects.get(id=projeto_id)
     
@@ -87,12 +94,13 @@ def edita_projeto_view(request, projeto_id):
     context = {'form': form, 'projeto':projeto}
     return render(request, 'portfolio/edita_projeto.html', context)
 
+@login_required
 def apaga_projeto_view(request, projeto_id):
     projeto = Projeto.objects.get(id=projeto_id)
     projeto.delete()
     return redirect('projetos')
 
-
+@login_required
 def nova_tecnologia_view(request):
     # criar instância de formulário.
     # Se foram submetidos dados, estes estão em request.POST e o formulario com dados é válido. 
@@ -105,6 +113,7 @@ def nova_tecnologia_view(request):
     context = {'form': form}
     return render(request, 'portfolio/nova_tecnologia.html', context)
 
+@login_required
 def edita_tecnologia_view(request, tecnologia_id):
     tecnologia = Tecnologia.objects.get(id=tecnologia_id)
     
@@ -119,12 +128,13 @@ def edita_tecnologia_view(request, tecnologia_id):
     context = {'form': form, 'tecnologia':tecnologia}
     return render(request, 'portfolio/edita_tecnologia.html', context)
 
+@login_required
 def apaga_tecnologia_view(request, tecnologia_id):
     tecnologia = Tecnologia.objects.get(id=tecnologia_id)
     tecnologia.delete()
     return redirect('tecnologias')
 
-
+@login_required
 def nova_competencia_view(request):
     # criar instância de formulário.
     # Se foram submetidos dados, estes estão em request.POST e o formulario com dados é válido. 
@@ -137,6 +147,7 @@ def nova_competencia_view(request):
     context = {'form': form}
     return render(request, 'portfolio/nova_competencia.html', context)
 
+@login_required
 def edita_competencia_view(request, competencia_id):
     competencia = Competencia.objects.get(id=competencia_id)
     
@@ -151,12 +162,13 @@ def edita_competencia_view(request, competencia_id):
     context = {'form': form, 'competencia':competencia}
     return render(request, 'portfolio/edita_competencia.html', context)
 
+@login_required
 def apaga_competencia_view(request, competencia_id):
     competencia = Competencia.objects.get(id=competencia_id)
     competencia.delete()
     return redirect('competencias')
 
-
+@login_required
 def nova_formacao_view(request):
     # criar instância de formulário.
     # Se foram submetidos dados, estes estão em request.POST e o formulario com dados é válido. 
@@ -169,6 +181,7 @@ def nova_formacao_view(request):
     context = {'form': form}
     return render(request, 'portfolio/nova_formacao.html', context)
 
+@login_required
 def edita_formacao_view(request, formacao_id):
     formacao = Formacao.objects.get(id=formacao_id)
     
@@ -183,6 +196,7 @@ def edita_formacao_view(request, formacao_id):
     context = {'form': form, 'formacao':formacao}
     return render(request, 'portfolio/edita_formacao.html', context)
 
+@login_required
 def apaga_formacao_view(request, formacao_id):
     formacao = Formacao.objects.get(id=formacao_id)
     formacao.delete()
@@ -229,3 +243,9 @@ Apresentar o percurso académico e projetos de forma dinâmica.
         "conteudo": conteudo,
         "makingof": makingof
     })
+    
+    
+
+
+
+
