@@ -29,6 +29,12 @@
             <a href="{% url 'formacoes' %}">Formações</a> 
             <a href="{% url 'makingof' %}">MakingOf</a> 
             <a href="{% url 'tfcs' %}">TfC's</a> 
+            
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
 
         </nav>
     </header>
