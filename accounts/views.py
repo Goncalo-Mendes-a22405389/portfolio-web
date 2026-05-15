@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
 
@@ -36,6 +37,9 @@ def register_view(request):
     if request.method == 'POST':
         if form.is_valid():
             user = form.save()
+            
+            grupo = Group.objects.get(name='Autores')
+            user.groups.add(grupo)
 
             login(request, user)
 

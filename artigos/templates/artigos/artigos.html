@@ -1,0 +1,51 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<h1>Artigos</h1>
+
+<section>
+
+    {% for artigo in artigos %}
+
+        <article>
+
+            <h3>{{ artigo.autor.username }}</h3>
+
+            {% if artigo.fotografia %}
+                <img src="{{ artigo.fotografia.url }}"  style="width: 200px; height: auto">
+            {% endif %}
+        
+
+            <p>{{ artigo.texto }}</p>
+
+            <p>{{ artigo.data_criacao }}</p>
+
+            {% if artigo.link_externo %}
+                <p>
+                    <a href="{{ artigo.link_externo }}" target="_blank"> Link externo</a>
+                </p>
+            {% endif %}
+
+            {% if artigo.autor == request.user %}
+                <a href="{% url 'edita_artigo' artigo.id %}"><button>Editar informação do Artigo</button></a>
+
+                <a href="{% url 'apaga_artigo' artigo.id %}"><button>Apagar o Artigo</button></a>
+            {% endif %}
+
+        </article>
+
+
+    {% empty %}
+
+        <p>Não existem artigos.</p>
+
+    {% endfor %}
+
+</section>
+
+{% if request.user.is_authenticated %}
+    <a href="{% url 'criar_artigo' %}"><button>Inserir novo Artigo</button> </a>
+{% endif %}
+
+{% endblock %}
