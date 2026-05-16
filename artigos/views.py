@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Artigo
-from .forms import ArtigoForm
+from .models import *
+from .forms import *
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -60,3 +60,45 @@ def apaga_artigo_view(request, artigo_id):
     
     artigo.delete()
     return redirect('artigos')
+
+@login_required
+def like_artigo(request, artigo_id):
+    artigo = Artigo.objects.get(id=artigo_id)
+    
+    if request.user.is_authenticated:
+        if request.user in artigo.likes.all():
+            artigo.likes.remove(request.user)
+        else:
+            artigo.likes.add(request.user)
+    return redirect("artigos")
+
+
+def detalhe_artigo(request, artigo_id):
+
+    artigo = Artigo.objects.get(id=artigo_id)
+
+    comentarios = artigo.comentarios.all().order_by('-data_criacao')
+
+    form = ComentarioForm()
+
+    if request.method == 'POST':
+
+        if not request.user.is_authenticated:
+            return redirect('login')
+
+        form = ComentarioForm(request.POST)
+
+        if form.is_valid():
+
+            comentario = form.save(commit=False)
+
+            comentario.autor = request.user
+            comentario.artigo = artigo
+
+            comentario.save()
+
+            return redirect('detalhe_artigo', artigo_id=artigo.id)
+
+    context = {'artigo': artigo,'comentarios': comentarios,'form': form }
+
+    return render(request, 'artigos/detalhe_artigo.html', context)

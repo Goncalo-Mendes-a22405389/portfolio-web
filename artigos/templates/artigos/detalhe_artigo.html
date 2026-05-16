@@ -1,0 +1,83 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+
+<article>
+
+    <h2>{{ artigo.autor.username }}</h2>
+
+    {% if artigo.fotografia %}
+        <img src="{{ artigo.fotografia.url }}" style="width:300px;">
+    {% endif %}
+
+    <p>{{ artigo.texto }}</p>
+
+    <p>{{ artigo.data_criacao }}</p>
+
+    {% if artigo.link_externo %}
+        <a href="{{ artigo.link_externo }}" target="_blank">
+            Link externo
+        </a>
+    {% endif %}
+
+    <p>Likes: {{ artigo.total_likes }} ❤️</p>
+
+    {% if request.user.is_authenticated %}
+        <form action="{% url 'like_artigo' artigo.id %}" method="post">
+            {% csrf_token %}
+
+            {% if request.user in artigo.likes.all %}
+                <button type="submit">💔 Deslike</button>
+            {% else %}
+                <button type="submit">❤️ Like</button>
+            {% endif %}
+        </form>
+    {% endif %}
+
+</article>
+
+<hr>
+
+<h3>Comentários</h3>
+
+{% for comentario in comentarios %}
+
+    <div style="border:1px solid gray; padding:10px; margin-bottom:10px;">
+
+        <strong>{{ comentario.autor.username }}</strong>
+
+        <p>{{ comentario.texto }}</p>
+
+        <small>{{ comentario.data_criacao }}</small>
+
+    </div>
+
+{% empty %}
+
+    <p>Ainda não existem comentários.</p>
+
+{% endfor %}
+
+<hr>
+
+{% if request.user.is_authenticated %}
+
+    <h3>Adicionar comentário</h3>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Comentar</button>
+
+    </form>
+
+{% else %}
+
+    <a href="{% url 'login' %}"><p>Precisa de iniciar sessão para comentar.</p></a>
+
+{% endif %}
+
+{% endblock %}
