@@ -89,17 +89,17 @@ class Formacao(models.Model):
         return self.nome
 
 class TFC(models.Model):
-    titulo = models.CharField(max_length=200)
-    autor = models.CharField(max_length=100)
+    titulo = models.TextField()
+    autor = models.TextField()
     email = models.EmailField()
-    orientador = models.CharField(max_length=100)
-    licenciatura = models.CharField(max_length=100)
+    orientador = models.TextField()
+    licenciatura = models.TextField()
     pdf = models.URLField(blank=True)
     image = models.URLField(blank=True)
     descricao = models.TextField()
-    area = models.CharField(max_length=100)
-    palavras_chaves = models.CharField(max_length=100)
-    tecnologias = models.CharField(max_length=100)
+    area = models.TextField()
+    palavras_chaves = models.TextField()
+    tecnologias = models.TextField()
     classificacao = models.FloatField()
 
     def __str__(self):
